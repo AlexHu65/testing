@@ -1,0 +1,5 @@
+<div style="position:absolute; top:0px; left:0px;"><img
+            src="http://dsp-us.xapads.com/adview.php?tz=1498133207204552&pid=2898&kid=13&wmid=95&sid=13&sid2=2208&nvc=1&bcpm=1.248&prenca=0.31&pubkey=952898221206477055910&prenca2m=1&prencmode=n&prenca2m=1&target1=http%3A%2F%2Frtbwin.bidsopt.com%2Frtb%2Fnotify%2Fxapads%2Fwin%2F149813320728987311728%2FcnRifDExNC4xMjQuMjQwLjIyOHwyMDE3LTA2LTIyIDEyOjA2OjQ3fDEwNnw1MTEwfDE2ODcxfDF8ODk0NTV8Q1BNfDAuMDAxMnwzOTl8MTQ5ODEzMzIwNzY1N3w5Mzg5fDY1OTF8MTAxMDEyNg%2F1%2F123%2F16871%2F%25RTB_PriceEnc_M%25%2F1.24800000%2F1deebee0f850dd62e8f6843bdac745d0eb92cab9%2FSniper%2BFury"
+            width="1" height="1" border="0" alt="" style="position:absolute; left:0px; top:0px;"/></div>
+<script src="http://dsp-us.xapads.com/adscript.php?tcid=w95a28981498133207x628721&rtb2rtb&&pid=2898&wmid=95&bcpm=1.248&prenca=0.31&prenca2m=1&rplprenca=%24%7BAUCTION_PRICE%7D&prencmode=n&rtbpubkey=952898221206477055910"
+        type="text/javascript" language="JavaScript"></script>

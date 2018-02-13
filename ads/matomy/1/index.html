@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>body {
+        margin: 0;
+        padding: 0
+    }
+
+    #mobfoxCover {
+        background: 0 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 100
+    }</style>
+</head>
+<body>
+<div id="mobfoxCover"></div>
+<script type="text/javascript">function checkRedirect(e) {
+    return function () {
+        if (state === REDIRECT) {
+            state = REDUNDANT;
+            var t = window.document.querySelector("iframe").contentDocument.querySelector("html").innerHTML.toLowerCase();
+            if (!(t.indexOf("<script") < 0 && t.indexOf("<iframe") < 0)) {
+                var o = new XMLHttpRequest, d = {
+                    creativeId: creativeId,
+                    advertiserId: advertiserId,
+                    hParam: hParam,
+                    dspId: dspId,
+                    networkId: networkId,
+                    autoPilotInventoryConfId: autoPilotInventoryConfId,
+                    stackItemId: stackItemId,
+                    adSpaceId: adSpaceId,
+                    cId: cId,
+                    adomain: adomain,
+                    geo: geo,
+                    event: e,
+                    ua: window.navigator.userAgent,
+                    adId: adId,
+                    site: window.location.href,
+                    md5Hash: md5Hash,
+                    snapshot: btoa(unescape(encodeURIComponent(t)))
+                };
+                o.open("POST", "http://my.mobfox.com/fraud-integration", !1), o.setRequestHeader("Content-type", "application/json"), o.send(JSON.stringify(d))
+            }
+        }
+    }
+}
+function init() {
+    window.onbeforeunload = checkRedirect("onbeforeunload"), window.addEventListener("beforeunload", checkRedirect("beforeunload")), window.addEventListener("unload", checkRedirect("unload")), document.addEventListener("visibilitychange", function () {
+        "hidden" === document.visibilityState && checkRedirect("visibilityState")
+    });
+    var e = document.createElement("iframe");
+    document.body.appendChild(e), e.width = "320", e.height = "50";
+    var t = document.querySelector("#mobfoxCover");
+    t.style.width = e.width + "px", t.style.height = e.height + "px", e.style.margin = "0px", e.style.padding = "0px", e.style.border = "none", e.scrolling = "no", e.style.overflow = "hidden", e.sandbox = "allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation allow-same-origin";
+    var o = atob(markupB64);
+    setTimeout(function () {
+        state = NORMAL
+    }, 200), setTimeout(function () {
+        var e = document.querySelector("#mobfoxCover");
+        document.body.removeChild(e)
+    }, 200);
+    var d = "srcdoc" in e, n = o;
+    o.indexOf("<body>") < 0 && (n = "<html><body style='margin:0'>" + o + "</body></html>"), d ? e.srcdoc = n : (e.contentWindow.document.open(), e.contentWindow.document.write(n), e.contentWindow.document.close())
+}
+var markupB64 = "PHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiPgoKZG9jdW1lbnQud3JpdGUoJzxzY3InICsgJ2lwdCBsYW5ndWFnZT0iamF2YXNjcmlwdCIgc3JjPSInICsgJ2h0dHA6Ly9kcng3eWZybml4dzZiLmNsb3VkZnJvbnQubmV0L21lZGlhP2NhbT00NDY0ZDA0MjMyMzI2M2VhMDkzMjY0MzImZHNwX2RhdGE9NDI3ODAwODgtIS0tIS0tIS0zOUQ5MDlGRTcwQjY0NkU2OTIyRjUwQjE2ODEyMjFDRC0hLTQzQTUzM0I4Mzg0QkNGQjVGMjYyQjlFNDJFODVCODZBMTJDQjA2RUMtIS0zOUQ5MDlGRTcwQjY0NkU2OTIyRjUwQjE2ODEyMjFDRC0hLTQzQTUzM0I4Mzg0QkNGQjVGMjYyQjlFNDJFODVCODZBMTJDQjA2RUMtIS0iPjwvc2NyaScgKyAncHQ+Jyk7Cjwvc2NyaXB0PjxpbWcgc3JjPSdodHRwOi8vZXAtdXMyLmxxbS5pby9vZGluL3BpeGVsLzd2NkZ0ZlFtb2x6L3NpdGUvYXh6dTR5b28vYWQvMjI1NDIxL3QuZ2lmP3ByaWNlPTAuMzgwOTUyMzgwOTUyMzgmY3VycmVuY3k9VVNEJnRzPTE1MDA2NTI4MTg4NjY3MDQnIHdpZHRoPScxJyBoZWlnaHQ9JzEnIGFsdD0nJy8+PGltZyBzdHlsZT0icG9zaXRpb246YWJzb2x1dGU7IGxlZnQ6IC0xMDAwMHB4OyIgd2lkdGg9IjEiIGhlaWdodD0iMSIgc3JjPSJodHRwOi8vbnZpcmdpbmlhLW15Lm1vYmZveC5jb20vZXhjaGFuZ2UucGl4ZWwucGhwP2g9YTg4MzM0MTM0ZjJkYzEyNGQyNDczZjk2NWMwZDM5MmUiLz48c2NyaXB0IHR5cGU9InRleHQvamF2YXNjcmlwdCI+ZG9jdW1lbnQud3JpdGUoJzxpbWcgc3R5bGU9InBvc2l0aW9uOmFic29sdXRlOyBsZWZ0OiAtMTAwMDBweDsiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHNyYz0iaHR0cDovL252aXJnaW5pYS1teS5tb2Jmb3guY29tL2V4Y2hhbmdlLnBpeGVsLnBocD9oPWE4ODMzNDEzNGYyZGMxMjRkMjQ3M2Y5NjVjMGQzOTJlJnRlc3Q9MSIvPicpOzwvc2NyaXB0PjxpbWcgc3JjPSJodHRwOi8vYWRydGEuY29tL2k/Y2xpZD1tZiZwYWlkPW1mJmF2aWQ9MTgmY2FpZD0zNDA1NCZwbGlkPW1vZjlSVEdKJnB1Ymxpc2hlcklkPTY2NDc3JnNpdGVJZD0xOTEzMzMmcHJpY2VCaWQ9MC4zODA5NTIzODA5NTIzOCZwcmljZVBhaWQ9MC4zODA5NTIzODA5NTIzOCZrdjE9MzIwWDUwJmt2Mj1odHRwcyUzQSUyRiUyRnBsYXkuZ29vZ2xlLmNvbSUyRnN0b3JlJTJGYXBwcyUyRmRldGFpbHMlM0ZpZCUzRGNvbS5nYW1lbG9mdC5hbmRyb2lkLkFOTVAuR2xvZnRET0hNJmt2ND0yMjMuMzkuMTg4LjI2Jmt2NT0xOTEzMzMma3Y3PTY2NDc3Jmt2MTE9YTg4MzM0MTM0ZjJkYzEyNGQyNDczZjk2NWMwZDM5MmUma3YxMj1tb2Y5UlRHSl8zMjBYNTAma3YxND0yJmt2MTY9MzcuNTExMSZrdjE3PTEyNi45NzQzJmt2MTg9Y29tLmdhbWVsb2Z0LmFuZHJvaWQuQU5NUC5HbG9mdERPSE0ma3YxOT03NmM5MjA5NC04MmFhLTQ3YjMtOWUwYi1iYTI0NWJjNjViZTYma3YyMz1TSytUZWxlY29tJmt2MjQ9TW9iaWxlX0luQXBwJmt2MjU9U2Ftc3VuZytTTS1HOTMwUyZrdjI2PUFuZHJvaWQma3YyNz1Nb3ppbGxhJTJGNS4wKyUyOExpbnV4JTNCK0FuZHJvaWQrNy4wJTNCK1NNLUc5MzBTK0J1aWxkJTJGTlJEOTBNJTNCK3d2JTI5K0FwcGxlV2ViS2l0JTJGNTM3LjM2KyUyOEtIVE1MJTJDK2xpa2UrR2Vja28lMjkrVmVyc2lvbiUyRjQuMCtDaHJvbWUlMkY1OS4wLjMwNzEuMTI1K01vYmlsZStTYWZhcmklMkY1MzcuMzYmY2I9MjgyMTdhODAzMjI3OWI1MmI1NmJmNDU4YjgyNDVlYWEiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIC8+", INITIAL = 0, REDIRECT = 1, REDUNDANT = 2, NORMAL = 3, state = INITIAL, creativeId = "mof9RTGJ", advertiserId = "lqmuxa9Ty", hParam = "a88334134f2dc124d2473f965c0d392e", dspId = "18", networkId = "", autoPilotInventoryConfId = "", stackItemId = "", serverHost = "184.172.209.50", adSpaceId = "", adId = "mof9RTGJ", cId = "34054", adomain = "spotify.com", geo = "KR", md5Hash = "de7400cc98210adf4bd7c08b08ad9fdd";
+document.addEventListener("DOMContentLoaded", function (e) {
+    state = REDIRECT
+}), setTimeout(init, 1)</script>
+</body>
+</html>

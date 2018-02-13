@@ -1,0 +1,35 @@
+HTTP/1.1 100 Continue
+Connection: keep-alive
+
+HTTP/1.1 503 Service Unavailable
+Date: Tue, 24 Oct 2017 02:17:13 GMT
+Server: Server
+Last-Modified: Wed, 03 Aug 2016 00:05:46 GMT
+ETag: "206-5391f98548a80"
+Accept-Ranges: bytes
+Content-Length: 518
+Vary: Accept-Encoding,User-Agent
+Cneonction: close
+Content-Type: text/html
+X-Cache: MISS from proxy.mex
+X-Cache-Lookup: MISS from proxy.mex:3128
+Via: 1.1 proxy.mex (squid)
+Connection: keep-alive
+
+<!DOCTYPE html>
+<html>
+    <!-- This comment acts as padding to ensure that the response is at least 512 bytes
+         to avoid IE showing "friendly" error pages. See:
+         http://www.404-error-page.com/404-error-page-too-short-problem-microsoft-ie.shtml
+         http://support.microsoft.com/kb/294807 
+	  **************************************
+    -->
+    <!-- 
+        HTTP 503: Service unavailable. Displaying blank.
+    -->
+    <head>
+    </head>
+    <body>
+        <div id="error"></div>
+    </body>
+</html>

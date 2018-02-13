@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>body {
+        margin: 0;
+        padding: 0
+    }
+
+    #mobfoxCover {
+        background: 0 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 100
+    }</style>
+</head>
+<body>
+<div id="mobfoxCover"></div>
+<script type="text/javascript">function checkRedirect(e) {
+    return function () {
+        if (state === REDIRECT) {
+            state = REDUNDANT;
+            var t = window.document.querySelector("iframe").contentDocument.querySelector("html").innerHTML.toLowerCase();
+            if (!(t.indexOf("<script") < 0 && t.indexOf("<iframe") < 0)) {
+                var o = new XMLHttpRequest, d = {
+                    creativeId: creativeId,
+                    advertiserId: advertiserId,
+                    hParam: hParam,
+                    dspId: dspId,
+                    networkId: networkId,
+                    autoPilotInventoryConfId: autoPilotInventoryConfId,
+                    stackItemId: stackItemId,
+                    adSpaceId: adSpaceId,
+                    cId: cId,
+                    adomain: adomain,
+                    geo: geo,
+                    event: e,
+                    ua: window.navigator.userAgent,
+                    adId: adId,
+                    site: window.location.href,
+                    md5Hash: md5Hash,
+                    snapshot: btoa(unescape(encodeURIComponent(t)))
+                };
+                o.open("POST", "http://my.mobfox.com/fraud-integration", !1), o.setRequestHeader("Content-type", "application/json"), o.send(JSON.stringify(d))
+            }
+        }
+    }
+}
+function init() {
+    window.onbeforeunload = checkRedirect("onbeforeunload"), window.addEventListener("beforeunload", checkRedirect("beforeunload")), window.addEventListener("unload", checkRedirect("unload")), document.addEventListener("visibilitychange", function () {
+        "hidden" === document.visibilityState && checkRedirect("visibilityState")
+    });
+    var e = document.createElement("iframe");
+    document.body.appendChild(e), e.width = "728", e.height = "90";
+    var t = document.querySelector("#mobfoxCover");
+    t.style.width = e.width + "px", t.style.height = e.height + "px", e.style.margin = "0px", e.style.padding = "0px", e.style.border = "none", e.scrolling = "no", e.style.overflow = "hidden", e.sandbox = "allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation allow-same-origin";
+    var o = atob(markupB64);
+    setTimeout(function () {
+        state = NORMAL
+    }, 200), setTimeout(function () {
+        var e = document.querySelector("#mobfoxCover");
+        document.body.removeChild(e)
+    }, 200);
+    var d = "srcdoc" in e, n = o;
+    o.indexOf("<body>") < 0 && (n = "<html><body style='margin:0'>" + o + "</body></html>"), d ? e.srcdoc = n : (e.contentWindow.document.open(), e.contentWindow.document.write(n), e.contentWindow.document.close())
+}
+var markupB64 = "PGh0bWw+PGJvZHk+PGltZyBzdHlsZT0nZGlzcGxheTpub25lOycgc3JjPSdodHRwOi8vd2luLmlxbS5jb20vbW9iZm94P3Jhdz1tVy1mVlQybkFIMlBkb0VLa1RaVVZGWkRRTjFJN3g1TlBOcExrWGZhV0RrTmF4cDlHVGZmZTFyRDh1bzQ3ZkNnYXh3SElQbzNQMnk4ekZmNHNNWC1fbzNlM0Y2eGUyZXFrazRZUk1CaUkya2tzYlVWRXZfY01qckQ1SnU4TGpFdjhHeXVKbDlsQWhGZHliQTBWbVhvcDQycTJCcXk3TXZUSW9reDVRWGxaWFJYWjgxV2lsSm1ZVkh2TmtTc1RNWjduMjZVQWJoYmxMNE5YUHROUm9IdnJIMEFUX01VdTNCdUpqd2gtYmJQMHFhZUxZeGVOT0hQVENTZzlBUGhpQkYwZnAxUTlzM3NkcEdNa0V2RTVPTGlfdmUxUmEweWd0SnRuSDQxaXRqS2VzSWJQb05UVE9NUUw1MjBob3MtTUlCUWF4bzRzUXJQNlB2a0Vrc25yaG5iWDlWMlZ1a19kd0pBX0ZkYWwyVW9UMnc5emlCZTlaUnAxQTNRNzlaNk5IbG13NHh5RVYzazhENWRZWnIyTzE3UVMtajZZZ25KTWR0STVoSk9zMXRoMk5NJTNEJnJlcV9pZD1DMEVGMzU1QTcxMzVEMERBMjMwNjUyOUU0NkE5RDA2MyZhcD0wLjcwNicgd2lkdGg9MCBoZWlnaHQ9MC8+PGlucyBjbGFzcz0nZGNtYWRzJyBzdHlsZT0nZGlzcGxheTppbmxpbmUtYmxvY2s7d2lkdGg6NzI4cHg7aGVpZ2h0OjkwcHgnCiAgICBkYXRhLWRjbS1wbGFjZW1lbnQ9J042NDUxLjI4NzI5M1RIRU1VTkRJQUxHUk9VUElOQ01VL0IxMTA3NDI0My4xNDg0MjgyODcnCiAgICBkYXRhLWRjbS1yZW5kZXJpbmctbW9kZT0nc2NyaXB0JwogICAgZGF0YS1kY20taHR0cHMtb25seQogICAgZGF0YS1kY20tcmVzZXR0YWJsZS1kZXZpY2UtaWQ9JycKICAgIGRhdGEtZGNtLWFwcC1pZD0nJz4KICA8c2NyaXB0IHNyYz0naHR0cHM6Ly93d3cuZ29vZ2xldGFnc2VydmljZXMuY29tL2RjbS9kY21hZHMuanMnPjwvc2NyaXB0Pgo8L2lucz48L2JvZHk+PC9odG1sPjxpbWcgc3R5bGU9InBvc2l0aW9uOmFic29sdXRlOyBsZWZ0OiAtMTAwMDBweDsiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHNyYz0iaHR0cDovL252aXJnaW5pYS1teS5tb2Jmb3guY29tL2V4Y2hhbmdlLnBpeGVsLnBocD9oPWFmNjBiMzhlYTEwNTdiODhlZDY3YjQzYjE0MmM1ZDg0Ii8+PHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiPmRvY3VtZW50LndyaXRlKCc8aW1nIHN0eWxlPSJwb3NpdGlvbjphYnNvbHV0ZTsgbGVmdDogLTEwMDAwcHg7IiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBzcmM9Imh0dHA6Ly9udmlyZ2luaWEtbXkubW9iZm94LmNvbS9leGNoYW5nZS5waXhlbC5waHA/aD1hZjYwYjM4ZWExMDU3Yjg4ZWQ2N2I0M2IxNDJjNWQ4NCZ0ZXN0PTEiLz4nKTs8L3NjcmlwdD48aW1nIHNyYz0iaHR0cDovL2FkcnRhLmNvbS9pP2NsaWQ9bWYmcGFpZD1tZiZhdmlkPTE4MSZjYWlkPTE4NDkmcGxpZD1jci00NzUyJnB1Ymxpc2hlcklkPTY2NDc3JnNpdGVJZD0xOTEzODEmcHJpY2VCaWQ9MC43NSZwcmljZVBhaWQ9MC43MDYma3YxPTcyOFg5MCZrdjI9aHR0cHMlM0ElMkYlMkZpdHVuZXMuYXBwbGUuY29tJTJGdXMlMkZhcHAlMkZtb2Rlcm4tY29tYmF0LTUtYmxhY2tvdXQlMkZpZDY1NjE3NjI3OCUzRm10JTNEOCZrdjQ9MTg1Ljg5LjIxNi4yNDQma3Y1PTE5MTM4MSZrdjc9NjY0Nzcma3YxMT1hZjYwYjM4ZWExMDU3Yjg4ZWQ2N2I0M2IxNDJjNWQ4NCZrdjEyPWNyLTQ3NTJfNzI4WDkwJmt2MTQ9MiZrdjE2PTM3Ljc1MSZrdjE3PS05Ny44MjIma3YxOD1jb20uZ2FtZWxvZnQuTW9kZXJuQ29tYmF0NSZrdjE5PTJFRDdFRUVBLTMwQkQtNENBQy1CQjY0LUEyOTU5NDZGRURDQSZrdjIzPU9uYXZvK01vYmlsZSZrdjI0PU1vYmlsZV9JbkFwcCZrdjI1PUFwcGxlK2lQYWQma3YyNj1pT1Mma3YyNz1Nb3ppbGxhJTJGNS4wKyUyOGlQYWQlM0IrQ1BVK09TKzEwXzNfMitsaWtlK01hYytPUytYJTI5K0FwcGxlV2ViS2l0JTJGNjAzLjIuNCslMjhLSFRNTCUyQytsaWtlK0dlY2tvJTI5K01vYmlsZSUyRjE0Rjg5JmNiPTYxNDYyYmYyN2VmZThhMjgyNGE4YTYzYjFlYzk3NTcyIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiAvPg==", INITIAL = 0, REDIRECT = 1, REDUNDANT = 2, NORMAL = 3, state = INITIAL, creativeId = "cr-4752", advertiserId = "", hParam = "af60b38ea1057b88ed67b43b142c5d84", dspId = "181", networkId = "", autoPilotInventoryConfId = "", stackItemId = "", serverHost = "184.172.209.50", adSpaceId = "", adId = "", cId = "1849", adomain = "aflac.com", geo = "US", md5Hash = "b5aae9f8a2c8fb8467c5aac2ccfa1ba8";
+document.addEventListener("DOMContentLoaded", function (e) {
+    state = REDIRECT
+}), setTimeout(init, 1)</script>
+</body>
+</html>
