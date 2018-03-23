@@ -8,8 +8,6 @@
  */
 class Database
 {
-
-
     private $host = 'localhost';
     private $db_name = 'php_oop_crud_level_1';
     private $password = '';
