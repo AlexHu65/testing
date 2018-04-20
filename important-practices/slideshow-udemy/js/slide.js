@@ -8,8 +8,9 @@ var p = {
     paginacion: document.querySelectorAll("#paginacion li"),
     item: 0,
     cajaSlide: document.querySelector("#slide ul"),
-    flecha: document.querySelectorAll(".flechas"),
-    cantidadImg: document.querySelectorAll("#slide ul li").length + 1,
+    flechas: document.querySelectorAll(".flechas"),
+    cantidadImg: document.querySelectorAll("#slide ul li").length,
+    indice: 1
 
 };
 
@@ -21,9 +22,11 @@ var m = {
                 p.paginacion[i].addEventListener("click", m.paginacionSlide)
             }
 
-            for (var i = 0; i < p.flecha.length; i++) {
+            for (var i = 0; i < p.flechas.length; i++) {
 
-                p.flecha[i].addEventListener("click", m.paginacionFlecha)
+                console.log(p.flechas[i]);
+
+                p.flechas[i].addEventListener("click", m.paginacionFlecha);
 
             }
 
@@ -40,31 +43,41 @@ var m = {
         paginacionFlecha: function (item) {
 
             if (item.target.parentNode.getAttribute("id") == 'avanzar') {
-                m.avanzar();
+                console.log('totimg: ', p.cantidadImg);
+                console.log('numero de img: ', p.indice);
+
+                if (p.cantidadImg > p.indice) {
+                    m.avanzar();
+
+                }
             } else {
                 m.retroceder();
+
 
             }
         },
 
-
         avanzar: function () {
 
-            if (p.item == 0) {
-                p.item++;
-            }
-
+            p.cajaSlide.style.left = (p.indice ) * -100 + "%";
+            p.indice++;
 
 
         },
 
         retroceder: function () {
 
+            if (p.indice > 1) {
+                p.indice--;
+                p.cajaSlide.style.left = (p.indice - 1 ) * -100 + "%";
+            }
+
 
         },
 
         movimientoSlide: function (item) {
 
+            p.indice = item + 1;
             p.cajaSlide.style.left = item * -100 + "%";
         }
 
